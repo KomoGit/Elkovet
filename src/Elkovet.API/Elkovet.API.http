@@ -1,0 +1,6 @@
+@Elkovet.API_HostAddress = http://localhost:5168
+
+GET {{Elkovet.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
