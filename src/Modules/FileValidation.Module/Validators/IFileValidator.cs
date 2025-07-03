@@ -1,7 +1,9 @@
-﻿namespace FileValidation.Module.Validators
+﻿using FileValidation.Module.Response;
+
+namespace FileValidation.Module.Validators
 {
     public interface IFileValidator
     {
-        bool Validate(byte[] buffer);
+        (bool, string) Validate(byte[] buffer);
     }
 }
