@@ -1,3 +1,5 @@
+using Application.Repositories;
+using Application.UseCases;
 using Infrastructure.DAL;
 using Infrastructure.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -20,9 +22,14 @@ builder.Services.AddAuthorization();
 #region Configurations
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection($"{typeof(DatabaseSettings).Name}"));
 builder.Services.Configure<JWTSettings>(builder.Configuration.GetSection($"{typeof(JWTSettings).Name}"));
+builder.Services.Configure<FileSettings>(builder.Configuration.GetSection(nameof(FileSettings)));
 #endregion
 #region Db Connection
 builder.Services.AddDbContext<AppDbContext>();
+#endregion
+#region Services
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddSingleton<IFileUploadRepository, FileUploadRepository>();
 #endregion
 #region Global Exception Handler
 builder.Services.AddLogging();
